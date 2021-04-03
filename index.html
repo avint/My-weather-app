@@ -33,7 +33,7 @@
       function sub(){
         txt = "";
         var city = document.getElementById('city').value;
-        var api = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=ee317190ef150d4fd92c7bbbb1922f41";
+        var api = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=ee317190ef150d4fd92c7bbbb1922f41";
         $.getJSON(api,(data)=>{
           Object.keys(data['main']).forEach(function(key){
             txt = txt + "<h3>" + key + " : " + data['main'][key] + "</h3>";
