@@ -28,20 +28,24 @@
     <div id="new" class="jumbotron">
     </div>
     <script>
-      var api;
-      var txt;
-      function sub(){
-        txt = "";
-        var city = document.getElementById('city').value;
-        var api = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=ee317190ef150d4fd92c7bbbb1922f41";
-        $.getJSON(api,(data)=>{
-          Object.keys(data['main']).forEach(function(key){
-            txt = txt + "<h3>" + key + " : " + data['main'][key] + "</h3>";
-        });
-        document.getElementById('new').innerHTML = txt;
-        })
-      }
-      
+var api;
+var txt;
+function sub(){
+  txt = "";
+  var city = document.getElementById('city').value;
+  var api = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=ee317190ef150d4fd92c7bbbb1922f41";
+  $.getJSON(api,(data)=>{
+    var key = Object.keys(data['main']);
+    console.log(key);
+    txt = "<h3>Temperature: "+ (data['main'][key[0]] -273).toFixed(2) + " C</h3>"+
+    "<h3>Feels like: "+ (data['main'][key[1]] -273).toFixed(2) + " C</h3>"+
+    "<h3>Temp minimum: "+ (data['main'][key[2]] -273).toFixed(2) + " C</h3>"+
+    "<h3>Temp maximum: "+ (data['main'][key[3]] -273).toFixed(2) + " C</h3>"+
+    "<h3>Pressure: "+ (data['main'][key[4]]).toFixed(2) + " mb</h3>"+
+    "<h3>Humidity: "+ (data['main'][key[5]]).toFixed(2) + " </h3>";
+  document.getElementById('new').innerHTML = txt;
+  })
+}
     </script>
   </body>
 
